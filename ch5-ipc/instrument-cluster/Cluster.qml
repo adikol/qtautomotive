@@ -3,6 +3,7 @@
 // Copyright (C) 2018 Pelagicore AG
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+
 import QtQuick
 import QtQuick.Window
 import Example.If.InstrumentClusterModule
@@ -32,12 +33,26 @@ Window {
     Navigation {
         id: map
 
+        enabled: topbar.selectedNavigatorIndex === 1
+        visible: enabled
         width: 0.6 * 720
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.top: topbar.bottom
         anchors.margins: 3
+    }
+
+    Weather {
+        id: weather
+        tabVisible: topbar.selectedNavigatorIndex === 2
+        enabled: tabVisible
+        visible: tabVisible
+
+        width: 0.66 * 720
+        height: width
+
+        anchors.centerIn: parent
     }
 
     RightDial {
@@ -54,10 +69,22 @@ Window {
 
     Top {
         id: topbar
+        focus:true
         y: 7
         anchors.horizontalCenter: parent.horizontalCenter
 
         temperature: instrumentCluster.temperature
+
+        Keys.onReleased: (event)=> {
+            if (event.key === Qt.Key_Left)
+            {
+                selectedNavigatorIndex = Math.max(selectedNavigatorIndex-1, 0)
+            }
+            else if (event.key === Qt.Key_Right)
+            {
+                selectedNavigatorIndex = Math.min(selectedNavigatorIndex+1, 2)
+            }
+        }
     }
 
     Image {

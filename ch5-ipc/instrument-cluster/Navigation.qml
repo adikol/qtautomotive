@@ -54,8 +54,6 @@ import QtQml
         }
     }
 
-    activeMapType: supportedMapTypes[0]
-
     // helper function
     function convertToDegrees(radian) {
       return (radian * 180) / Math.PI;
@@ -234,24 +232,24 @@ import QtQml
 
         console.log("max tilt level: " + maximumTilt)
         console.log("min tilt level: " + minimumTilt)
-        aQuery.addWaypoint(QtPositioning.coordinate(60.170448, 24.942046))
-        aQuery.addWaypoint(QtPositioning.coordinate(60.1783, 24.8329))
-        aQuery.travelModes = RouteQuery.CarTravel
-    }
+        query.addWaypoint(QtPositioning.coordinate(60.170448, 24.942046))
+        query.addWaypoint(QtPositioning.coordinate(60.1783, 24.8329))
+        query.travelModes = RouteQuery.CarTravel
 
-    Plugin {
-        id: aPlugin
-        name: "osm"
+        for(var i = 0; i< supportedMapTypes.length; i++)
+        {
+            console.log("supported map type: " + supportedMapTypes[i])
+        }
     }
 
     RouteQuery {
-        id: aQuery
+        id: query
     }
 
     RouteModel {
         id: routeModel
-        plugin: aPlugin
-        query: aQuery
+        plugin: plugin
+        query: query
         autoUpdate: true
         onStatusChanged: {
             if (status == RouteModel.Ready) {
@@ -292,6 +290,7 @@ import QtQml
     }
 
     plugin: Plugin {
+        id: plugin
         name: "osm"
 
         PluginParameter {
@@ -305,8 +304,14 @@ import QtQml
             name: "osm.mapping.highdpi_tiles"
             value: true
         }
+
+        PluginParameter {
+            name: "osm.mapping.providersrepository.disabled"
+            value: true
+        }
     }
 
     center: QtPositioning.coordinate(60.170448, 24.942046) // Helsinki
     copyrightsVisible: false
+    activeMapType: supportedMapTypes[0]
 }

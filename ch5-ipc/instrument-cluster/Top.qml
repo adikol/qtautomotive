@@ -11,6 +11,7 @@ Item {
     height: 0.12 * 720
 
     property real temperature: 0
+    property int selectedNavigatorIndex: 1
 
     Image {
         id: background
@@ -63,7 +64,7 @@ Item {
                     height: row.radius * 2
                     width: row.radius * 2
                     radius: row.radius
-                    color: 1 === index ? "white" : "#4d4d4d"
+                    color: selectedNavigatorIndex === index ? "white" : "#4d4d4d"
                 }
             }
         }

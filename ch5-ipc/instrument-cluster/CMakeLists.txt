@@ -38,6 +38,7 @@ set(app_resource_files
     "Navigation.qml"
     "RightDial.qml"
     "Top.qml"
+    "Weather.qml"
 )
 
 qt_add_resources(ic_chapter5 "app"
@@ -75,6 +76,17 @@ qt_add_resources(ic_chapter5 "images"
         "../../images"
     FILES
         ${images_resource_files}
+)
+
+file(GLOB weather_images "../../images/weather/*.png")
+
+qt_add_resources(ic_chapter5 "weatherimages"
+    PREFIX
+        "/weatherimages"
+    BASE
+        "../../images/weather/"
+    FILES
+        ${weather_images}
 )
 
 install(TARGETS ic_chapter5
