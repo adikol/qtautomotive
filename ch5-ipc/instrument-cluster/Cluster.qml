@@ -45,14 +45,22 @@ Window {
 
     Weather {
         id: weather
-        tabVisible: topbar.selectedNavigatorIndex === 2
-        enabled: tabVisible
-        visible: tabVisible
+        enabled: topbar.selectedNavigatorIndex === 2
+        visible: enabled
 
         width: 0.66 * 720
         height: width
 
         anchors.centerIn: parent
+
+        cityName: instrumentCluster.weatherInfo.city
+        country: instrumentCluster.weatherInfo.country
+        timestamp: instrumentCluster.weatherInfo.timestamp
+        currentTemperature: instrumentCluster.weatherInfo.temperature
+        feelsLikeTemperature: instrumentCluster.weatherInfo.feelslike
+        humidity: instrumentCluster.weatherInfo.humidity
+        weatherIconName: instrumentCluster.weatherInfo.weathericon
+        isDay: instrumentCluster.weatherInfo.isday
     }
 
     RightDial {

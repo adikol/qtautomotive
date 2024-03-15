@@ -9,6 +9,7 @@ interface InstrumentCluster {
     readonly real temperature;
     readonly SystemType systemType;
     readonly Warning currentWarning;
+    readonly WeatherInfo weatherInfo;
 }
 
 enum SystemType {
@@ -20,4 +21,15 @@ struct Warning {
     string color
     string text
     string icon
+}
+
+struct WeatherInfo {
+    string city
+    string country
+    real timestamp
+    real temperature
+    real feelslike
+    real humidity
+    string weathericon
+    bool isday
 }

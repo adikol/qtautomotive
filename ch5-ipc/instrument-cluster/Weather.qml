@@ -1,5 +1,4 @@
 import QtQuick
-import QtCharts 2.6
 
 Rectangle {
     width: 500
@@ -18,31 +17,9 @@ Rectangle {
     property real humidity: 87
     property string weatherIconName: "sunny.png" // lets be positive :)
     property bool isDay: true
-    property bool tabVisible: false
 
     function convertFirstLetterToUpperCase(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    // A timer to refresh the forecast every 5 minutes
-    Timer {
-        interval: 300000
-        repeat: true
-        triggeredOnStart: true
-        running: tabVisible
-        onTriggered: {
-            var xhr = new XMLHttpRequest;
-            xhr.open("GET",
-                     apiUrl);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    console.log("response text: " + xhr.responseText)
-                    var a = JSON.parse(xhr.responseText);
-                    parseWeatherData(a);
-                }
-            }
-            xhr.send();
-        }
     }
 
     Text {
@@ -91,34 +68,6 @@ Rectangle {
             text: "Humidity: " + humidity + " %"
             font.pixelSize: 20
             color: "white"
-        }
-    }
-
-    function parseWeatherData(weatherData) {
-
-        for (var i in weatherData.response) {
-
-            var responseObj = weatherData.response[i];
-
-            cityName = responseObj.place.name
-            country = responseObj.place.country
-
-            for (var j in responseObj.periods) {
-                var periodObj = responseObj.periods[j];
-                timestamp = periodObj.timestamp
-
-                currentTemperature = Math.round(periodObj.tempC).toFixed(1)
-                feelsLikeTemperature = Math.round(periodObj.feelslikeC).toFixed(1)
-                humidity = periodObj.humidity
-                weatherIconName = periodObj.icon
-                isDay = periodObj.isDay
-
-                console.log("ts: " + timestamp)
-                console.log("cityname: " + cityName)
-                console.log("country: " + country)
-                console.log("current temp: " + currentTemperature)
-                console.log("icon name: " + weatherIconName)
-            }
         }
     }
 }

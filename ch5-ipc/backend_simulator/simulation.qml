@@ -14,6 +14,19 @@ QtObject {
     }
     property var backend : InstrumentClusterBackend {
 
+        property string cityName: "helsinki"
+        property string country: "fi"
+        property double timestamp: 1710422700
+        property real currentTemperature: Math.round(2.91).toFixed(1)
+        property real feelsLikeTemperature: Math.round(0.18).toFixed(1)
+        property real humidity: 87
+        property string weatherIconName: "sunny.png" // lets be positive :)
+        property bool isDay: true
+
+        property string xweatherAPIId: "Vto2pITyX364VYjy9JiZL"
+        property string xweatherAPISecretKey: "scMTmStpATW8ORNPrzNRV6MPIhR7tAHFYcKlSbms"
+        property string apiUrl: "https://api.aerisapi.com/conditions/:auto?format=json&plimit=1&filter=1min&client_id=%1&client_secret=%2".arg(xweatherAPIId).arg(xweatherAPISecretKey)
+
         function initialize() {
             console.log(qLcInstrumentCluster, "INITIALIZE")
             if (!defaultInitialized) {
@@ -92,6 +105,56 @@ QtObject {
                 to: 1
                 duration: 4000
             }
+        }
+
+        // A timer to refresh the forecast every 5 minutes
+        property var timer: Timer {
+            interval: 300000
+            repeat: true
+            triggeredOnStart: true
+            running: true
+            onTriggered: {
+                var xhr = new XMLHttpRequest;
+                xhr.open("GET",
+                         backend.apiUrl);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        console.log("response text: " + xhr.responseText)
+                        var a = JSON.parse(xhr.responseText);
+                        backend.parseWeatherData(a);
+                    }
+                }
+                xhr.send();
+            }
+        }
+
+        function parseWeatherData(weatherData) {
+
+            for (var i in weatherData.response) {
+
+                var responseObj = weatherData.response[i];
+
+                cityName = responseObj.place.name
+                country = responseObj.place.country
+
+                for (var j in responseObj.periods) {
+                    var periodObj = responseObj.periods[j];
+                    timestamp = periodObj.timestamp
+
+                    currentTemperature = Math.round(periodObj.tempC).toFixed(1)
+                    feelsLikeTemperature = Math.round(periodObj.feelslikeC).toFixed(1)
+                    humidity = periodObj.humidity
+                    weatherIconName = periodObj.icon
+                    isDay = periodObj.isDay
+
+                    console.log("ts: " + timestamp)
+                    console.log("cityname: " + cityName)
+                    console.log("country: " + country)
+                    console.log("current temp: " + currentTemperature)
+                    console.log("icon name: " + weatherIconName)
+                }
+            }
+            backend.weatherInfo = InstrumentClusterModule.weatherInfo(cityName, country, timestamp, currentTemperature, feelsLikeTemperature, humidity, weatherIconName, isDay)
         }
     }
 }
