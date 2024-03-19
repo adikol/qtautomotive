@@ -7,6 +7,7 @@ CONFIG -= app_bundle
 SOURCES = main.cpp
 RESOURCES += app.qrc \
              ../../images/images.qrc \
+             ../../images/weather/weatherimages.qrc \
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$OUT_PWD/../frontend/qml

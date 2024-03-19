@@ -34,7 +34,7 @@ Rectangle {
 
     Image {
         id: weatherImage
-        source: Qt.resolvedUrl("weatherimages/%1".arg(weatherIconName))
+        source: weatherIconName ? Qt.resolvedUrl("weatherimages/%1".arg(weatherIconName)) : ""
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: 70

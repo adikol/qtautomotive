@@ -7,5 +7,7 @@
         <file>Dial.qml</file>
         <file>Fuel.qml</file>
         <file>Label.qml</file>
+        <file>Navigation.qml</file>
+        <file>Weather.qml</file>
     </qresource>
 </RCC>

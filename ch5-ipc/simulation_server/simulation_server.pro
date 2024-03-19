@@ -12,6 +12,8 @@ INCLUDEPATH += $$OUT_PWD/../frontend
 IFCODEGEN_TEMPLATE = server_qtro_simulator
 IFCODEGEN_SOURCES = ../instrument-cluster.qface
 
+QMAKE_INFO_PLIST = ./Info.plist
+
 QML_IMPORT_PATH = $$OUT_PWD/qml
 
 RESOURCES += ../backend_simulator/simulation.qrc

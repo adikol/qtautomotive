@@ -9,7 +9,10 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/interfaceframework/qface-tutorial
 find_package(Qt6 REQUIRED COMPONENTS Core Gui InterfaceFramework)
 
 qt_add_plugin(ic_chapter5_simulation PLUGIN_TYPE interfaceframework)
-set_target_properties(ic_chapter5_simulation PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../interfaceframework)
+set_target_properties(ic_chapter5_simulation PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY ../interfaceframework
+    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
+)
 
 # Interface Framework Generator:
 qt_ifcodegen_extend_target(ic_chapter5_simulation

@@ -11,7 +11,9 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/interfaceframework/qface-tutorial
 find_package(Qt6 REQUIRED COMPONENTS Core InterfaceFramework Quick)
 
 qt_add_executable(chapter5-ipc-server)
-set_target_properties(chapter5-ipc-server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../)
+set_target_properties(chapter5-ipc-server PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ../
+)
 
 # Interface Framework Generator:
 qt_ifcodegen_extend_target(chapter5-ipc-server
@@ -21,7 +23,8 @@ qt_ifcodegen_extend_target(chapter5-ipc-server
 
 set_target_properties(chapter5-ipc-server PROPERTIES
     WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE FALSE
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
 )
 
 target_link_libraries(chapter5-ipc-server PUBLIC

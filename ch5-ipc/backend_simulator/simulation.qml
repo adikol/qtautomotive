@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
+import QtPositioning
 import Example.If.InstrumentClusterModule.simulation
 
 QtObject {
@@ -106,6 +107,43 @@ QtObject {
                 duration: 4000
             }
         }
+
+        property var positionalInfo: PositionSource {
+                id: src
+                updateInterval: 600
+                active: true
+                preferredPositioningMethods: PositionSource.AllPositioningMethods
+                name: "corelocation"
+
+                PluginParameter { name: "RequestAlwaysPermission"; value: true }
+
+
+                Component.onCompleted: {
+                      src.start()
+                      src.update()
+                      var supPos  = "Unknown"
+                      if (src.supportedPositioningMethods == PositionSource.NoPositioningMethods) {
+                           supPos = "NoPositioningMethods"
+                      } else if (src.supportedPositioningMethods == PositionSource.AllPositioningMethods) {
+                           supPos = "AllPositioningMethods"
+                      } else if (src.supportedPositioningMethods == PositionSource.SatellitePositioningMethods) {
+                           supPos = "SatellitePositioningMethods"
+                      } else if (src.supportedPositioningMethods == PositionSource.NonSatellitePositioningMethods) {
+                           supPos = "NonSatellitePositioningMethods"
+                      }
+                      console.log("Position Source Loaded || Supported: "+supPos+" Valid: "+valid);
+
+                      console.log("\n position error: " + sourceError)
+                }
+
+                onPositionChanged: {
+                    var coord = src.position.coordinate;
+                    console.log("Coordinate:", coord.longitude, coord.latitude);
+                    backend.longitude = coord.longitude;
+                    backend.latitude = coord.latitude;
+                    console.log(src.nmeaSource)
+                }
+            }
 
         // A timer to refresh the forecast every 5 minutes
         property var timer: Timer {
