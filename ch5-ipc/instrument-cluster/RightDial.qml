@@ -21,6 +21,7 @@ Item {
         width: root.width/3
         height: 0.1 * root.width
         anchors.bottom: overlay.top
+        anchors.bottomMargin: 0.025 * root.height
         anchors.left: parent.left
         anchors.leftMargin: 0.2 * root.width
 
@@ -41,6 +42,14 @@ Item {
             anchors.leftMargin: 10
             source: Qt.resolvedUrl("images/+--.png")
         }
+    }
+
+    Rectangle {
+        width: overlay.paintedWidth * 0.9
+        height: width
+        radius: width / 2
+        color: "black"
+        anchors.centerIn: overlay
     }
 
     Image {
@@ -159,7 +168,7 @@ Item {
     Fuel {
         id: fuelMeter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0.05 * root.height
+        anchors.bottomMargin: 0.035 * root.height
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: -20
     }

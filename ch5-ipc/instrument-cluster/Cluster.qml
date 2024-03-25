@@ -21,26 +21,28 @@ Window {
         id: instrumentCluster
     }
 
-    LeftDial {
-        id: leftDial
-        anchors.left: parent.left
-        anchors.leftMargin: 0.1 * width
-
-        value: instrumentCluster.speed
-        metricSystem: instrumentCluster.systemType === InstrumentClusterModule.Metric
-    }
-
     Navigation {
         id: map
 
         enabled: topbar.selectedNavigatorIndex === 1
         visible: enabled
-        width: 0.6 * 720
+        width: 900
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.top: topbar.bottom
-        anchors.margins: 3
+        anchors.topMargin: 35
+        anchors.bottomMargin: 135
+    }
+
+    LeftDial {
+        id: leftDial
+        anchors.left: parent.left
+        anchors.leftMargin: 0.1 * width
+        anchors.verticalCenter: parent.verticalCenter
+
+        value: instrumentCluster.speed
+        metricSystem: instrumentCluster.systemType === InstrumentClusterModule.Metric
     }
 
     Weather {

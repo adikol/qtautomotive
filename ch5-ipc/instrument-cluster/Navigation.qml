@@ -98,7 +98,7 @@ import QtQml
             right: map.right
         }
         z: 1
-        height: 100
+        height: 50
         anchors{
             top: map.top
             left: map.left
@@ -110,12 +110,12 @@ import QtQml
             anchors {
                 left: parent.left
                 right: parent.right
-                margins: 10
+                margins: 50
             }
             height: parent.height
             horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignVCenter
-            font.pixelSize: 25
+            font.pixelSize: 18
             color: "white"
             wrapMode: Text.WordWrap
         }
@@ -126,7 +126,7 @@ import QtQml
         property alias arrivalText: informationText.text
         width: map.width
         z: 1
-        height: 55
+        height: 40
         anchors{
             bottom: map.bottom
             left: map.left

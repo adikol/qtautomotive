@@ -14,6 +14,14 @@ Item {
     property real value: 0.0
     property bool metricSystem: false
 
+    Rectangle {
+        width: overlay.paintedWidth * 0.9
+        height: width
+        radius: width / 2
+        color: "black"
+        anchors.centerIn: overlay
+    }
+
     Image {
         id: overlay
 
