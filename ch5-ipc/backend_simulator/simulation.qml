@@ -15,6 +15,8 @@ QtObject {
     }
     property var backend : InstrumentClusterBackend {
 
+
+        //Weather values
         property string cityName: "helsinki"
         property string country: "fi"
         property double timestamp: 1710422700
@@ -24,6 +26,7 @@ QtObject {
         property string weatherIconName: "sunny.png" // lets be positive :)
         property bool isDay: true
 
+        //Weather API keys
         property string xweatherAPIId: "Vto2pITyX364VYjy9JiZL"
         property string xweatherAPISecretKey: "scMTmStpATW8ORNPrzNRV6MPIhR7tAHFYcKlSbms"
         property string apiUrl: "https://api.aerisapi.com/conditions/:auto?format=json&plimit=1&filter=1min&client_id=%1&client_secret=%2".arg(xweatherAPIId).arg(xweatherAPISecretKey)
@@ -37,10 +40,20 @@ QtObject {
             Base.initialize()
         }
 
+        //Gear values
         property int gearSpeed: 260 / 6
         property int currentGear: speed / gearSpeed
         rpm : currentGear >= 1 ? 3000 + (speed % gearSpeed) / gearSpeed * 2000
                                : (speed % gearSpeed) / gearSpeed * 5000
+
+
+        //Driving data values
+        readonly property int maxRange: 800
+        readonly property int worstEconomyFigure: 10
+        readonly property int maxAverageSpeed: 100
+        property int range: maxRange
+        property real fuelEconomy: 5.0
+        property int averageSpeed: 50
 
         property var animation: SequentialAnimation {
             loops: Animation.Infinite
@@ -193,6 +206,23 @@ QtObject {
                 }
             }
             backend.weatherInfo = InstrumentClusterModule.weatherInfo(cityName, country, timestamp, currentTemperature, feelsLikeTemperature, humidity, weatherIconName, isDay)
+        }
+
+
+        property var drivingDataTimer: Timer {
+            interval: 7200
+            repeat: true
+            triggeredOnStart: true
+            running: true
+            onTriggered: {
+                range =  range - 1
+                if(range == 0)
+                {
+                    range = maxRange
+                }
+                fuelEconomy = Math.floor(Math.random() * worstEconomyFigure);
+                averageSpeed = Math.floor(Math.random() * maxAverageSpeed);
+            }
         }
     }
 }

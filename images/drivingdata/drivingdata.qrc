@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/drivingdataimages">
+        <file>range.png</file>
+        <file>averagespeed.png</file>
+        <file>mileage.png</file>
+    </qresource>
+</RCC>

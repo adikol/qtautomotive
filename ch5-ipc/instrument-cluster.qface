@@ -33,3 +33,9 @@ struct WeatherInfo {
     string weathericon
     bool isday
 }
+
+struct DrivingData {
+    int range
+    real mileage
+    int averageSpeed
+}

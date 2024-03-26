@@ -32,6 +32,7 @@ target_link_libraries(ic_chapter5 PUBLIC
 set(app_resource_files
     "Cluster.qml"
     "Dial.qml"
+    "DrivingData.qml"
     "Fuel.qml"
     "Label.qml"
     "LeftDial.qml"
@@ -79,6 +80,7 @@ qt_add_resources(ic_chapter5 "images"
 )
 
 file(GLOB weather_images "../../images/weather/*.png")
+file(GLOB drivingdata_images "../../images/drivingdata/*.png")
 
 qt_add_resources(ic_chapter5 "weatherimages"
     PREFIX
@@ -87,6 +89,15 @@ qt_add_resources(ic_chapter5 "weatherimages"
         "../../images/weather/"
     FILES
         ${weather_images}
+)
+
+qt_add_resources(ic_chapter5 "drivingdataimages"
+    PREFIX
+        "/drivingdataimages"
+    BASE
+        "../../images/drivingdata/"
+    FILES
+        ${drivingdata_images}
 )
 
 install(TARGETS ic_chapter5

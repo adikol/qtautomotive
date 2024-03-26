@@ -21,6 +21,14 @@ Window {
         id: instrumentCluster
     }
 
+    DrivingData {
+        id: dataPage
+        enabled: topbar.selectedNavigatorIndex === 0
+        visible: enabled
+
+        anchors.centerIn: parent
+    }
+
     Navigation {
         id: map
 
@@ -45,11 +53,19 @@ Window {
         metricSystem: instrumentCluster.systemType === InstrumentClusterModule.Metric
     }
 
+    Text {
+        id: dataUnavailableText
+        text: "Weather data unavailable"
+        anchors.centerIn: parent
+        font.pixelSize: 16
+        color: "white"
+        visible: !weather.visible && weather.enabled
+    }
+
     Weather {
         id: weather
         enabled: topbar.selectedNavigatorIndex === 2
-        visible: enabled
-
+        visible: enabled && instrumentCluster && instrumentCluster.weatherInfo.weathericon
         width: 0.66 * 720
         height: width
 
