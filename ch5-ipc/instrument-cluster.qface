@@ -10,6 +10,7 @@ interface InstrumentCluster {
     readonly SystemType systemType;
     readonly Warning currentWarning;
     readonly WeatherInfo weatherInfo;
+    readonly DrivingData drivingData;
 }
 
 enum SystemType {

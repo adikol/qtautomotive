@@ -9,6 +9,11 @@ Item {
     readonly property real imageWidth: 64
     readonly property int fontSize: 23
 
+    //reasonable defaults
+    property int range: 800
+    property real fuelEconomy: 5.0
+    property int averageSpeed: 50
+
     Column {
         id: dataCols
         anchors.centerIn: parent
@@ -26,7 +31,7 @@ Item {
             }
             Text {
                 id: rangeText
-                text: "500 km"  + "\nRange"
+                text: range + " km" + "\nRange"
                 font.pixelSize: fontSize
                 font.bold: true
                 color: "white"
@@ -44,7 +49,7 @@ Item {
             }
             Text {
                 id: mileage
-                text: "5.6 km/l" + "\nAvg. Speed"
+                text: fuelEconomy.toFixed(1) + " l / 100 km" + "\nAvg. Fuel Usage"
                 font.pixelSize: fontSize
                 font.bold: true
                 color: "white"
@@ -62,7 +67,7 @@ Item {
             }
             Text {
                 id: avgSpeed
-                text: "56 km/h"+ "\nAvg. Fuel Usage"
+                text: averageSpeed + " km/h" + "\nAvg. Speed"
                 font.pixelSize: fontSize
                 font.bold: true
                 color: "white"

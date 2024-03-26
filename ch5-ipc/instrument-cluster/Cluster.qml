@@ -27,6 +27,11 @@ Window {
         visible: enabled
 
         anchors.centerIn: parent
+
+
+        range: instrumentCluster.drivingData.range
+        fuelEconomy: instrumentCluster.drivingData.mileage
+        averageSpeed: instrumentCluster.drivingData.averageSpeed
     }
 
     Navigation {

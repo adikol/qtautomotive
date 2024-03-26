@@ -215,13 +215,15 @@ QtObject {
             triggeredOnStart: true
             running: true
             onTriggered: {
-                range =  range - 1
-                if(range == 0)
+                backend.range =  backend.range - 1
+                if(backend.range === 0)
                 {
-                    range = maxRange
+                    backend.range = maxRange
                 }
-                fuelEconomy = Math.floor(Math.random() * worstEconomyFigure);
-                averageSpeed = Math.floor(Math.random() * maxAverageSpeed);
+                backend.fuelEconomy = Math.floor(Math.random() * backend.worstEconomyFigure);
+                backend.averageSpeed = Math.floor(Math.random() * backend.maxAverageSpeed);
+
+                backend.drivingData = InstrumentClusterModule.drivingData(backend.range, backend.fuelEconomy, backend.averageSpeed)
             }
         }
     }
