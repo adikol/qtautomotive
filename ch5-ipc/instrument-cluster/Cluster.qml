@@ -40,6 +40,7 @@ Window {
         enabled: topbar.selectedNavigatorIndex === 1
         visible: enabled
         width: 900
+        showMapText: false
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom

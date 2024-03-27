@@ -16,6 +16,8 @@ import QtQml
     property date timeOfArrival: new Date()
     property var locale: Qt.locale()
 
+    property bool showMapText: false
+
     Behavior on center {
       CoordinateAnimation {
         duration: 900
@@ -99,6 +101,7 @@ import QtQml
         }
         z: 1
         height: 50
+        visible: showMapText
         anchors{
             top: map.top
             left: map.left
@@ -125,6 +128,7 @@ import QtQml
         id: informationArea
         property alias arrivalText: informationText.text
         width: map.width
+        visible: showMapText
         z: 1
         height: 40
         anchors{
