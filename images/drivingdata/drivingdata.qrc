@@ -3,5 +3,6 @@
         <file>range.png</file>
         <file>averagespeed.png</file>
         <file>mileage.png</file>
+        <file>odometer.png</file>
     </qresource>
 </RCC>

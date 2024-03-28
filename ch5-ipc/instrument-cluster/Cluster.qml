@@ -32,6 +32,7 @@ Window {
         range: instrumentCluster.drivingData.range
         fuelEconomy: instrumentCluster.drivingData.mileage
         averageSpeed: instrumentCluster.drivingData.averageSpeed
+        odoMeterValue: instrumentCluster.drivingData.odometerValue
     }
 
     Navigation {
@@ -81,10 +82,14 @@ Window {
         country: instrumentCluster.weatherInfo.country
         timestamp: instrumentCluster.weatherInfo.timestamp
         currentTemperature: instrumentCluster.weatherInfo.temperature
+        minTemperature: instrumentCluster.weatherInfo.mintemp
+        maxTemperature: instrumentCluster.weatherInfo.maxtemp
+        windMps: instrumentCluster.weatherInfo.windms
         feelsLikeTemperature: instrumentCluster.weatherInfo.feelslike
         humidity: instrumentCluster.weatherInfo.humidity
         weatherIconName: instrumentCluster.weatherInfo.weathericon
         isDay: instrumentCluster.weatherInfo.isday
+        uvIndex: instrumentCluster.weatherInfo.uvindex
     }
 
     RightDial {

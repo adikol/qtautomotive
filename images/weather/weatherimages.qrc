@@ -3,6 +3,7 @@
         <file>wintrymixn.png</file>
         <file>wintrymix.png</file>
         <file>wind.png</file>
+        <file>windspeed.png</file>
         <file>tstormwn.png</file>
         <file>tstormw.png</file>
         <file>tstormswn.png</file>
@@ -94,5 +95,6 @@
         <file>am_showers.png</file>
         <file>am_pcloudyr.png</file>
         <file>am_pcloudy.png</file>
+        <file>humidity.png</file>
     </qresource>
 </RCC>

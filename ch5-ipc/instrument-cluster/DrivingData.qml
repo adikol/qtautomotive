@@ -13,8 +13,9 @@ Item {
     property int range: 800
     property real fuelEconomy: 5.0
     property int averageSpeed: 50
+    property int odoMeterValue: 5000
 
-    Column {
+    ColumnLayout {
         id: dataCols
         anchors.centerIn: parent
         spacing: colSpacing
@@ -60,7 +61,7 @@ Item {
             spacing: rowSpacing
             Image {
                 id: avgSpeedImage
-                source: Qt.resolvedUrl("drivingdataimages/averagespeed.png")
+                source: Qt.resolvedUrl("drivingdataimages/odometer.png")
                 Layout.preferredWidth: imageWidth
                 Layout.preferredHeight: width
                 fillMode: Image.PreserveAspectCrop
@@ -68,6 +69,24 @@ Item {
             Text {
                 id: avgSpeed
                 text: averageSpeed + " km/h" + "\nAvg. Speed"
+                font.pixelSize: fontSize
+                font.bold: true
+                color: "white"
+            }
+        }
+
+        RowLayout {
+            spacing: rowSpacing
+            Image {
+                id: odometerImage
+                source: Qt.resolvedUrl("drivingdataimages/averagespeed.png")
+                Layout.preferredWidth: imageWidth
+                Layout.preferredHeight: width
+                fillMode: Image.PreserveAspectCrop
+            }
+            Text {
+                id: odoMeterText
+                text: odoMeterValue + " km" + "\nMileage"
                 font.pixelSize: fontSize
                 font.bold: true
                 color: "white"

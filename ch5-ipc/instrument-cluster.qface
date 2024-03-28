@@ -29,14 +29,19 @@ struct WeatherInfo {
     string country
     real timestamp
     real temperature
+    real mintemp
+    real maxtemp
+    real windms
     real feelslike
     real humidity
     string weathericon
     bool isday
+    int uvindex
 }
 
 struct DrivingData {
     int range
     real mileage
     int averageSpeed
+    int odometerValue
 }
